@@ -1,7 +1,8 @@
 def new_list():
     lst = {
         "elements":[],
-        "size": 0
+        "size": 0,
+        "type":"ARRAY_LIST"
     }
     
     return lst
@@ -118,3 +119,14 @@ def sub_list(my_list, pos, numelem):
         sublist["size"] = len(sub_elements)
         return sublist
     return -1
+
+def selection_sort(my_list, sort_crit):
+    a=[]
+    
+    for i in range(my_list["size"]):
+        menor= my_list["elements"][i]
+        for  j in range(my_list["elements"][i:]):
+            if sort_crit(my_list["elements"][i],my_list["elements"][i+1])
+            
+            
+    a.append(z)        
