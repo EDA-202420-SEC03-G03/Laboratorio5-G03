@@ -1,7 +1,8 @@
 def new_list():
     lst = {
         "elements":[],
-        "size": 0
+        "size": 0,
+        "type": "ARRAY_LIST"
     }
     
     return lst
@@ -118,3 +119,7 @@ def sub_list(my_list, pos, numelem):
         sublist["size"] = len(sub_elements)
         return sublist
     return -1
+
+def merge_sort(my_list, sort_crit):
+    
+    return my_list

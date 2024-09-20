@@ -154,10 +154,20 @@ def delete_element(my_list, pos):
     return my_list
 
 def exchange(my_list, pos1, pos2):
-    pass
+    a1=get_element(my_list,pos1)
+    a2=get_element(my_list,pos2)
+    change_info(my_list,pos1,a2)
+    change_info(my_list,pos2, a1)
+    
+    return my_list
 
 def change_info(my_list, pos, new_info):
-    pass
+    a=my_list["first"]
+    for i in range(pos):
+        a=a["next"]
+    a["info"] = new_info
+    
+    return my_list
 
 def sub_list(my_list, pos, numelem):
     sub_list = new_list()
@@ -181,3 +191,7 @@ def sub_list(my_list, pos, numelem):
         nodo = nodo["next"]
 
     return sub_list
+
+def merge_sort(my_list, sort_crit):
+    
+    return my_list
