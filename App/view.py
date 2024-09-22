@@ -125,7 +125,7 @@ def print_book_info(book):
 
 
 
-def print_sort_results(sort_books, sample=3):
+def print_sort_results(sort_books, sample):
     """
     Imprime la información de una muestra de libros ordenados.
 
@@ -138,7 +138,7 @@ def print_sort_results(sort_books, sample=3):
     """
 
     # Recorrer los elementos de la estructura de datos 'sort_books'.
-    for book_pos in range(0, data_structure.size(sort_books)):
+    for book_pos in range(0, int(data_structure.size(sort_books))):
         # Si todavía hay libros que imprimir en la muestra.
         if sample > 0:
             # Obtener el libro en la posición actual.
@@ -227,7 +227,7 @@ def main():
         elif int(inputs[0]) == 7:
             print("Ordenando los libros por rating ...")
             result = logic.sort_books(control)
-            print_sort_results(result, size)    
+            print_sort_results(result, int(size))    
             print("Tiempo de ejecución:", f"{result:.3f}", "[ms]")
 
         elif int(inputs[0]) == 8:
