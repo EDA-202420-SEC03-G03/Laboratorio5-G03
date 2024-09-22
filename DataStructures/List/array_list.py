@@ -121,12 +121,85 @@ def sub_list(my_list, pos, numelem):
     return -1
 
 def selection_sort(my_list, sort_crit):
-    a=[]
+    
     
     for i in range(my_list["size"]):
         menor= my_list["elements"][i]
-        for  j in range(my_list["elements"][i:]):
-            if sort_crit(my_list["elements"][i],my_list["elements"][i+1])
+        
+        for  j in range(i,my_list["size"]):
+            if sort_crit(get_element(my_list,j),menor):
+                menor=get_element(my_list,j)
+                pos_menor=j
+            
+        
+        exchange(my_list,i,pos_menor)
+        
+         
+    return   my_list
+
+def shell_sort(my_list,sort_crit):
+    gaps=size(my_list)//2+1
+    while gaps!=0:
+        
+        
+        
+        
+        for i in range(0,size(my_list)-gaps):
+            if sort_crit(get_element(my_list,i),get_element(my_list,i+gaps)):
+                pass
+            else:
+                exchange(my_list,i,i+gaps)
+                
+               
+            
+        if gaps==1:
+            gaps=0
+        gaps=gaps//2 
+    return my_list        
+            
+def merge_sort(my_list,sort_crit):
+    def sort(list):
+        if size(list)==2:
+            if sort_crit(get_element(list,0),get_element(list,1)):
+              pass
+            else:
+                
+                exchange(list,1,0)
+        
+             
+    if size(my_list)>2:
+        mitad=size(my_list)//2
+        iz=new_list()
+        der=new_list()
+        der["elements"]=my_list["elements"][mitad:]
+        iz["elements"]=my_list["elements"][:mitad]
+        iz["size"]=len(iz["elements"])
+        der["size"]=len(der["elements"])
+        
+        merge_sort(iz,sort_crit)
+        merge_sort(der,sort_crit)
+        
+        my_list["elements"] = []
+        i, j = 0, 0
+        
+        while i < size(iz) and j < size(der):
+            if sort_crit(get_element(iz, i), get_element(der, j)):
+                my_list["elements"].append(get_element(iz, i))
+                i += 1
+            else:
+                my_list["elements"].append(get_element(der, j))
+                j += 1
+        
+        # Agregar los elementos restantes de iz y der
+        my_list["elements"].extend(iz["elements"][i:])
+        my_list["elements"].extend(der["elements"][j:])
+        my_list["size"] = len(my_list["elements"])
+                    
+                     
             
             
-    a.append(z)        
+    else:
+         sort(my_list)
+         
+         
+    return my_list            

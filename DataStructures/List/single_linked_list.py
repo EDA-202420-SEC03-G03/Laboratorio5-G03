@@ -196,6 +196,95 @@ def sub_list(my_list, pos, numelem):
         nodo = nodo["next"]
 
     return sub_list
-
 def selection_sort(my_list, sort_crit):
-    for i 
+    
+    
+    for i in range(my_list["size"]):
+        menor= get_element(my_list,i)
+        
+        for  j in range(i,my_list["size"]):
+            if sort_crit(get_element(my_list,j),menor):
+                menor=get_element(my_list,j)
+                pos_menor=j
+            
+        
+        exchange(my_list,i,pos_menor)
+        
+         
+    return   my_list
+
+
+def shell_sort(my_list,sort_crit):
+    gaps=size(my_list)//2+1
+    while gaps!=0:
+        
+        
+        
+        
+        for i in range(0,size(my_list)-gaps):
+            if sort_crit(get_element(my_list,i),get_element(my_list,i+gaps)):
+                pass
+            else:
+                exchange(my_list,i,i+gaps)
+                
+               
+            
+        if gaps==1:
+            gaps=0
+        gaps=gaps//2 
+    return my_list        
+                
+def merge_sort(my_list,sort_crit):
+    def sort(list):
+        if size(list)==2:
+            if sort_crit(get_element(list,0),get_element(list,1)):
+              pass
+            else:
+                
+                exchange(list,1,0)
+        
+             
+    if size(my_list)>2:
+        mitad=size(my_list)//2
+        iz=new_list()
+        der=new_list()
+        der["elements"]=sub_list(my_list,0,mitad)
+        iz["elements"]=sub_list(my_list,mitad,my_list["size"]-mitad)
+        
+        
+        merge_sort(iz,sort_crit)
+        merge_sort(der,sort_crit)
+        
+        my_list =new_list()
+        i, j = 0, 0
+        
+        while i < size(iz) and j < size(der):
+            if sort_crit(get_element(iz, i), get_element(der, j)):
+                add_last(my_list,(get_element(iz, i)))
+                delete_element(iz,i)
+                i += 1
+            else:
+                add_last(my_list,(get_element(der, i)))
+                j += 1
+                delete_element(der,j)
+        
+        
+        while i < size(iz):
+            add_last(my_list, get_element(iz, i))
+            i += 1
+            
+        while j < size(der):
+            add_last(my_list, get_element(der, j))
+            j += 1
+        
+                    
+                     
+            
+            
+    else:
+         sort(my_list)
+         
+         
+    return my_list       
+              
+        

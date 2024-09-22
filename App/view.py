@@ -50,7 +50,7 @@ def print_menu():
     Menu de usuario
     """
     print("Bienvenido")
-    #TODO: agregar opción 0 para escoger el tipo de estructura de datos
+    print("0- escoga la estructura de datos que desea usar ")
     print("1- Cargar información en el catálogo")
     print("2- Consultar la información de un libro")
     print("3- Consultar los libros de un autor")
