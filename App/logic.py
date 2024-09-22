@@ -27,10 +27,6 @@
 import os
 import csv
 import time
-
-
-# TODO: Importar las librería para el manejo de listas
-
 from DataStructures.List import array_list as al
 from DataStructures.List import single_linked_list as lt
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
@@ -58,8 +54,8 @@ def new_logic(user_data_structure):
 
     # Usamos la estructura seleccionada para inicializar todas las listas
     catalog["books"] = data_structure.new_list()
-    catalog["authors"] = #TODO: completar la creacion de la lista de autores
-    catalog["tags"] = #TODO: completar la creacion de la lista de tags
+    catalog["authors"] = data_structure.new_list()
+    catalog["tags"] = data_structure.new_list()
     catalog["book_tags"] = data_structure.new_list()
     
     return catalog
@@ -85,7 +81,7 @@ def load_books(catalog):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    booksfile = data_dir + #TODO: completar la ruta del archivo de BOOKS
+    booksfile = data_dir + 'GoodReads/books.csv'
     input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
     for book in input_file:
         add_book(catalog, book)
@@ -107,7 +103,7 @@ def load_books_tags(catalog):
     """
     Carga la información que asocia tags con libros.
     """
-    bookstagsfile = data_dir + #TODO: completar la ruta del archivo de BOOKS_TAGS
+    bookstagsfile = data_dir + 'GoodReads/book_tags.csv'
     input_file = csv.DictReader(open(bookstagsfile, encoding='utf-8'))
     for booktag in input_file:
         add_book_tag(catalog, booktag)
@@ -175,9 +171,9 @@ def select_sort_algorithm(algo_opt):
         algo_msg = "Seleccionó la configuración - Selection Sort"
 
     # opcion 2: Merge Sort
-    #TODO: completar la opcion de Merge Sort
-    
-    # respuesta final: algoritmo de ordenamiento y texto de configuracion
+    if algo_opt == 2:
+        sort_algorithm = 2 
+        algo_msg = "Seleccionó la configuración - Merge Sort"
     return sort_algorithm, algo_msg
 
 
@@ -251,9 +247,9 @@ def book_size(catalog):
 def author_size(catalog):
     return data_structure.size(catalog["authors"])
 
-#TODO: completar la funcion para obtener el tamaño de la lista de tags
+
 def tag_size(catalog):
-    
+    return data_structure.size(catalog["tags"])
 
 
 def book_tag_size(catalog):
@@ -302,7 +298,7 @@ def sort_books(catalog):
     if sort_algorithm == 1:
         data_structure.selection_sort(sorted_books, eval_ratings)
     else:
-        #TODO: completar para merge sort
+        data_structure.merge_sort(sorted_books, eval_ratings)   
     end_time = get_time()
     delta = delta_time(start_time, end_time)
     return delta
