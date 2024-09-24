@@ -230,4 +230,3 @@ def test_sub_list():
     assert sub_list["size"] == 2
     assert sub_list["first"]["info"] == 3
     assert sub_list["last"]["info"] == 2
-
