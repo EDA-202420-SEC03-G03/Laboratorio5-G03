@@ -203,3 +203,28 @@ def merge_sort(my_list,sort_crit):
          
          
     return my_list            
+def quick_sort(my_list, sort_criterial):
+    def quicksort(arr, left, right):
+        if left <right:
+            partition_pos = partition (arr, left, right)
+            quicksort(arr, left, partition_pos- 1)
+            quicksort(arr, partition_pos + 1, right)
+    def partition(arr, left, right):
+        
+        
+        i = left
+        j =right - 1
+        pivot = get_element(arr,right)
+        while i < j:
+            
+            while i < right and (sort_criterial(get_element(arr,i),pivot) or (sort_criterial(get_element(arr,i),pivot))and sort_criterial(pivot,get_element(arr,i))):
+                i += 1
+            while j > left and sort_criterial(pivot,get_element(arr,j)):
+                j -= 1
+            if i < j:
+                exchange(arr,i,j)
+        if sort_criterial(pivot,get_element(arr,i)):
+            exchange(arr,right,i)
+        return  i
+    quicksort(my_list,0,size(my_list)-1)
+    return my_list
