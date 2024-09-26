@@ -88,11 +88,11 @@ def select_data_structure():
             sub_input = ""
 
 
-def load_data(control):
+def load_data(control, percentage):
     """
     Solicita a la controlador que cargue los datos
     """
-    books, authors, tags, book_tags = logic.load_data(control)
+    books, authors, tags, book_tags = logic.load_data(control, percentage)
     return books, authors, tags, book_tags
 
 
@@ -190,8 +190,9 @@ def main():
             control = new_logic(user_data_structure)
             
         elif int(inputs[0]) == 1:
+            percentage = int(input("Escriba un porcentaje de uno a 100 para la muestra a cargar: "))
             print("Cargando información de los archivos ....")
-            bk, at, tg, bktg = load_data(control)
+            bk, at, tg, bktg = load_data(control, percentage)
             print('Libros cargados: ' + str(bk))
             print('Autores cargados: ' + str(at))
             print('Géneros cargados: ' + str(tg))

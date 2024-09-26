@@ -64,26 +64,27 @@ def new_logic(user_data_structure):
 # Funciones para la carga de datos
 #  -------------------------------------------------------------
 
-def load_data(catalog):
+def load_data(catalog, percentage):
     """
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
     """
-    books, authors = load_books(catalog)
+    books, authors = load_books(catalog, percentage)
     tag_size = load_tags(catalog)
     book_tag_size = load_books_tags(catalog)
     return books, authors,tag_size,book_tag_size
 
 
-def load_books(catalog):
+def load_books(catalog, percentage):
     """
     Carga los libros del archivo.  Por cada libro se toman sus autores y por
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
     booksfile = data_dir + 'GoodReads/books.csv'
-    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
-    for book in input_file:
+    input_file = list(csv.DictReader(open(booksfile, encoding='utf-8')))
+    final_quantity = int(len(input_file) * percentage / 100)
+    for book in input_file[:final_quantity]:
         add_book(catalog, book)
     return book_size(catalog), author_size(catalog)
 
