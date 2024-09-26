@@ -257,3 +257,31 @@ def sort(my_list, sort_crit):
         if not sort_crit(get_element(my_list, 0), get_element(my_list, 1)):
             exchange(my_list, 0, 1)
     return my_list
+
+def insertion_sort (my_list,sort_crit):
+    filteres = new_list()
+    actual = my_list["first"]
+    while actual != None:
+        next_ = actual["next"]
+        filteres = insert(filteres, actual["info"], sort_crit)
+        actual = next_
+    return filteres
+
+def insert(my_list, element, sort_crit):
+    nodo = node.new_single_node(element)
+    if size(my_list) >1:
+        actual = my_list["first"]
+        prev = None
+        while actual != None and sort_crit(element, actual["info"]) != True:
+            prev = actual
+            actual = actual["next"]
+        if prev == None:
+            nodo["next"] = my_list["first"]
+            my_list["first"] = nodo
+        else:
+            nodo["next"] = actual
+            prev["next"] = nodo
+        if nodo["next"] == None:
+            my_list["last"] = nodo
+    my_list["size"] += 1
+    return my_list

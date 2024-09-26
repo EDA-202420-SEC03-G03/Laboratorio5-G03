@@ -203,3 +203,13 @@ def merge_sort(my_list,sort_crit):
          
          
     return my_list            
+
+def insertion_sort(my_list,sort_crit):
+    for i in range(1,size(my_list)):
+        llave = get_element(my_list,i)
+        j = i -1
+        while j>=0 and sort_crit(get_element(my_list,j),llave):
+            my_list[j + 1] = my_list[j]
+            j -= 1
+        my_list[j + 1] = key_item
+    return my_list
