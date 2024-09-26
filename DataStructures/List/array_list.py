@@ -213,3 +213,19 @@ def insertion_sort(my_list, sort_crit):
             j -= 1
         my_list['elements'][j + 1] = llave
     return my_list
+#-------------------
+# Sorting criteria
+#-------------------
+
+def sort_crit_ascending(element1, element2):
+    is_sorted = False
+    if element1 <= element2:
+        is_sorted = True
+    return is_sorted
+
+def sort_crit_descending(element1, element2):
+    is_sorted = False
+    if element1 >= element2:
+        is_sorted = True
+    return is_sorted
+
