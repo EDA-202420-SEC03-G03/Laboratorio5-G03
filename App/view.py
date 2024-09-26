@@ -92,7 +92,7 @@ def select_data_structure():
                 sort_crit = sca_al
                 print("Has elegido el orden ascendente")
                 return sub_input, sub_input2
-            if sub_input2 == "2":
+            elif sub_input2 == "2":
                 sort_crit == scd_al
                 print("Has elegido el orden descendente")
                 return sub_input, sub_input2
@@ -107,7 +107,7 @@ def select_data_structure():
                 sort_crit = sca_lt
                 print("Has elegido el orden ascendente")
                 return sub_input, sub_input2
-            if sub_input2 == "2":
+            elif sub_input2 == "2":
                 sort_crit == scd_lt
                 print("Has elegido el orden descendente")
                 return sub_input, sub_input2
@@ -260,7 +260,7 @@ def main():
         elif int(inputs[0]) == 7:
             print("Ordenando los libros por rating ...")
             result = logic.sort_books(control)
-            print_sort_results(result, int(size))    
+            print_sort_results(control['book_sublist'], control['book_sublist']['size'])    
             print("Tiempo de ejecución:", f"{result:.3f}", "[ms]")
 
         elif int(inputs[0]) == 8:

@@ -42,7 +42,7 @@ def new_logic(user_data_structure):
     utilizando la estructura de datos seleccionada.
     """
     global data_structure
-    if user_data_structure == "1":
+    if user_data_structure[0] == "1":
         data_structure = al
     else:
         data_structure = lt
