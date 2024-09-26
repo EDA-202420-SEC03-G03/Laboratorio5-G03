@@ -69,6 +69,8 @@ def load_data(catalog, percentage):
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
     """
+    books = 0
+    authors = 0
     books, authors = load_books(catalog, percentage)
     tag_size = load_tags(catalog)
     book_tag_size = load_books_tags(catalog)

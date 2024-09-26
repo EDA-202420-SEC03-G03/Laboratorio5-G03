@@ -190,7 +190,7 @@ def main():
             control = new_logic(user_data_structure)
             
         elif int(inputs[0]) == 1:
-            percentage = int(input("Escriba un porcentaje de uno a 100 para la muestra a cargar: "))
+            percentage = float(input("Escriba un porcentaje de uno a 100 para la muestra a cargar: "))
             print("Cargando información de los archivos ....")
             bk, at, tg, bktg = load_data(control, percentage)
             print('Libros cargados: ' + str(bk))
