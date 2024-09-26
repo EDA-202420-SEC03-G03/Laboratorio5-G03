@@ -258,30 +258,33 @@ def sort(my_list, sort_crit):
             exchange(my_list, 0, 1)
     return my_list
 
-def insertion_sort (my_list,sort_crit):
-    filteres = new_list()
-    actual = my_list["first"]
-    while actual != None:
-        next_ = actual["next"]
-        filteres = insert(filteres, actual["info"], sort_crit)
-        actual = next_
-    return filteres
+def insertion_sort(my_list, sort_crit):
+    sorted_list = new_list()
+    current = my_list["first"]
+    while current is not None:
+        next_node = current["next"]
+        insert(sorted_list, current["info"], sort_crit)
+        current = next_node
+    return sorted_list
 
 def insert(my_list, element, sort_crit):
     nodo = node.new_single_node(element)
-    if size(my_list) >1:
+    if size(my_list) == 0:
+        my_list["first"] = nodo
+        my_list["last"] = nodo
+    else:
         actual = my_list["first"]
         prev = None
-        while actual != None and sort_crit(element, actual["info"]) != True:
+        while actual is not None and sort_crit(actual["info"], element):
             prev = actual
             actual = actual["next"]
-        if prev == None:
+        if prev is None:
             nodo["next"] = my_list["first"]
             my_list["first"] = nodo
         else:
             nodo["next"] = actual
             prev["next"] = nodo
-        if nodo["next"] == None:
+        if nodo["next"] is None:
             my_list["last"] = nodo
     my_list["size"] += 1
     return my_list

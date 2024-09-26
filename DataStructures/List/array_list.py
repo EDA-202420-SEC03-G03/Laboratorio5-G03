@@ -204,12 +204,12 @@ def merge_sort(my_list,sort_crit):
          
     return my_list            
 
-def insertion_sort(my_list,sort_crit):
-    for i in range(1,size(my_list)):
-        llave = get_element(my_list,i)
-        j = i -1
-        while j>=0 and sort_crit(get_element(my_list,j),llave):
-            my_list[j + 1] = my_list[j]
+def insertion_sort(my_list, sort_crit):
+    for i in range(1, size(my_list)):
+        llave = get_element(my_list, i)
+        j = i - 1
+        while j >= 0 and sort_crit(llave, get_element(my_list, j)):
+            my_list['elements'][j + 1] = my_list['elements'][j]
             j -= 1
-        my_list[j + 1] = key_item
+        my_list['elements'][j + 1] = llave
     return my_list
