@@ -229,3 +229,29 @@ def quick_sort(my_list, sort_criterial):
     quicksort(my_list,0,size(my_list)-1)
     return my_list
 #holaa
+
+def insertion_sort(my_list, sort_crit):
+    for i in range(1, size(my_list)):
+        llave = get_element(my_list, i)
+        j = i - 1
+        while j >= 0 and sort_crit(llave, get_element(my_list, j)):
+            my_list['elements'][j + 1] = my_list['elements'][j]
+            j -= 1
+        my_list['elements'][j + 1] = llave
+    return my_list
+#-------------------
+# Sorting criteria
+#-------------------
+
+def sort_crit_ascending(element1, element2):
+    is_sorted = False
+    if element1 <= element2:
+        is_sorted = True
+    return is_sorted
+
+def sort_crit_descending(element1, element2):
+    is_sorted = False
+    if element1 >= element2:
+        is_sorted = True
+    return is_sorted
+

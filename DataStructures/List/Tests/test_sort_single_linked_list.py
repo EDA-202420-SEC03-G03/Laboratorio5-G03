@@ -71,7 +71,7 @@ def test_selection_sort():
     for i in range(0, 15):
         assert lt.get_element(back_up, i) == reference_inverted_list[i]
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_insertion_sort():
 
     empty_list, one_element_list, random_lista, inverted_list = setup_tests()

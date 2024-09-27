@@ -28,8 +28,13 @@ import sys
 import App.logic as logic
 from DataStructures.List import array_list as al
 from DataStructures.List import single_linked_list as lt
+from DataStructures.List.array_list import sort_crit_ascending as sca_al
+from DataStructures.List.array_list import sort_crit_descending as scd_al
+from DataStructures.List.single_linked_list import sort_crit_ascending as sca_lt
+from DataStructures.List.single_linked_list import sort_crit_descending as scd_lt
 
 data_structure = None
+sort_crit = None
 
 """
 La vista se encarga de la interacción con el usuario
@@ -65,34 +70,61 @@ def select_data_structure():
     Vista: Captura la selección del usuario y retorna
     la estructura de datos elegida.
     """
-    print("\nEscoge la estructura de datos a usar:")
+    print("\nEscoge la estructura de datos a usar, luego el criterio de ordenamiento:")
     print("1 - Array_list")
     print("2 - Single_linked_list")
+    print("\n1- Ascending")
+    print("2- Descending")
     
     sub_input = ""
+    sub_input2 = ""
     
-    while sub_input == "":
-        sub_input = input("\nSeleccione una opción: ")
+    while sub_input == "" and sub_input2 == "":
+        sub_input = input("\nSeleccione una opción de estructura: ")
+        sub_input2 = input("\Seleccione un criterio de ordenamiento: ")
         global data_structure
-        # Encapsulamos la estructura de datos seleccionada en la variable `data_structure`
+        global sort_crit
+        
         if sub_input == "1":
             data_structure = al
             print("Has elegido Array_list")
-            return sub_input
-        elif sub_input == "2":
+            if sub_input2 == "1":
+                sort_crit = sca_al
+                print("Has elegido el orden ascendente")
+                return sub_input, sub_input2
+            elif sub_input2 == "2":
+                sort_crit == scd_al
+                print("Has elegido el orden descendente")
+                return sub_input, sub_input2
+            else:
+                print("Opción no válida en el submenú")
+                sub_input2 = ""
+                
+        if sub_input == "2":
             data_structure = lt
             print("Has elegido Single_linked_list")
-            return input
+            if sub_input2 == "1":
+                sort_crit = sca_lt
+                print("Has elegido el orden ascendente")
+                return sub_input, sub_input2
+            elif sub_input2 == "2":
+                sort_crit == scd_lt
+                print("Has elegido el orden descendente")
+                return sub_input, sub_input2
+            else:
+                print("Opción no válida en el submenú")
+                sub_input2 = ""
+        
         else:
             print("Opción no válida en el submenú")
             sub_input = ""
 
 
-def load_data(control):
+def load_data(control, percentage):
     """
     Solicita a la controlador que cargue los datos
     """
-    books, authors, tags, book_tags = logic.load_data(control)
+    books, authors, tags, book_tags = logic.load_data(control, percentage)
     return books, authors, tags, book_tags
 
 
@@ -190,8 +222,9 @@ def main():
             control = new_logic(user_data_structure)
             
         elif int(inputs[0]) == 1:
+            percentage = float(input("Escriba un porcentaje de uno a 100 para la muestra a cargar: "))
             print("Cargando información de los archivos ....")
-            bk, at, tg, bktg = load_data(control)
+            bk, at, tg, bktg = load_data(control, percentage)
             print('Libros cargados: ' + str(bk))
             print('Autores cargados: ' + str(at))
             print('Géneros cargados: ' + str(tg))
@@ -227,7 +260,7 @@ def main():
         elif int(inputs[0]) == 7:
             print("Ordenando los libros por rating ...")
             result = logic.sort_books(control)
-            print_sort_results(result, int(size))    
+            print_sort_results(control['book_sublist'], control['book_sublist']['size'])    
             print("Tiempo de ejecución:", f"{result:.3f}", "[ms]")
 
         elif int(inputs[0]) == 8:

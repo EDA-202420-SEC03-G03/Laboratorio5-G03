@@ -283,3 +283,50 @@ def quick_sort(my_list, sort_criterial):
     quicksort(my_list,0,size(my_list)-1)
     return my_list
 #holaa
+
+def insertion_sort(my_list, sort_crit):
+    sorted_list = new_list()
+    current = my_list["first"]
+    while current is not None:
+        next_node = current["next"]
+        insert(sorted_list, current["info"], sort_crit)
+        current = next_node
+    return sorted_list
+
+def insert(my_list, element, sort_crit):
+    nodo = node.new_single_node(element)
+    if size(my_list) == 0:
+        my_list["first"] = nodo
+        my_list["last"] = nodo
+    else:
+        actual = my_list["first"]
+        prev = None
+        while actual is not None and sort_crit(actual["info"], element):
+            prev = actual
+            actual = actual["next"]
+        if prev is None:
+            nodo["next"] = my_list["first"]
+            my_list["first"] = nodo
+        else:
+            nodo["next"] = actual
+            prev["next"] = nodo
+        if nodo["next"] is None:
+            my_list["last"] = nodo
+    my_list["size"] += 1
+    return my_list
+
+#-------------------
+# Sorting criteria
+#-------------------
+
+def sort_crit_ascending(element1, element2):
+    is_sorted = False
+    if element1 <= element2:
+        is_sorted = True
+    return is_sorted
+
+def sort_crit_descending(element1, element2):
+    is_sorted = False
+    if element1 >= element2:
+        is_sorted = True
+    return is_sorted
